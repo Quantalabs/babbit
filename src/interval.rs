@@ -1,9 +1,6 @@
 /// An interval between two notes.
 #[derive(Debug, Clone, Copy)]
-pub struct Interval {
-    /// The number of semitones between the two notes.
-    pub interval: u8,
-}
+pub struct Interval(pub u8);
 
 impl Interval {
     /// Create an interval from two notes.
@@ -18,9 +15,7 @@ impl Interval {
     /// let another_interval = Interval::from(3, 2); // 11 semitones
     /// ```
     pub fn from(a: i8, b: i8) -> Interval {
-        Interval {
-            interval: (b - a).rem_euclid(12) as u8,
-        }
+        Interval((b - a).rem_euclid(12) as u8)
     }
 
     /// Get the interval class.
@@ -37,10 +32,10 @@ impl Interval {
     ///
     /// [interval class]: https://en.wikipedia.org/wiki/Interval_class
     pub fn class(&self) -> u8 {
-        if self.interval > 6 {
-            6 - (self.interval % 6)
+        if self.0 > 6 {
+            6 - (self.0 % 6)
         } else {
-            self.interval
+            self.0
         }
     }
 }

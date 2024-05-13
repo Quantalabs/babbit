@@ -4,7 +4,7 @@ use babbit::interval::Interval;
 fn interval_from() {
     let some_interval = Interval::from(3, 2);
 
-    assert_eq!(some_interval.interval, 11);
+    assert_eq!(some_interval.0, 11);
 }
 
 #[test]
